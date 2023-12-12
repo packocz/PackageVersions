@@ -1,0 +1,75 @@
+{
+	"packageDirectories": [
+		{
+			"path": "src-tmp",
+			"default": true
+		},
+		{
+			"path": "src/base",
+			"package": "VersionsBase",
+			"versionName": "ver 0.1",
+			"versionNumber": "0.1.0.NEXT",
+			"default": false,
+			"versionDescription": "Package Versioning demo, base package. Top level dependency",
+			"definitionFile": "config/project-scratch-def.json"
+		},
+		{
+			"path": "src/feature-1",
+			"package": "VersionsFeature1",
+			"versionName": "ver 0.1",
+			"versionNumber": "0.1.0.NEXT",
+			"default": false,
+			"versionDescription": "Package Versioning demo, feature package. Depends on Base",
+			"definitionFile": "config/project-scratch-def.json",
+			"dependencies": [
+				{
+					"package": "VersionsBase"
+				}
+			]
+		},
+		{
+			"path": "src/feature-2",
+			"package": "VersionsFeature2",
+			"versionName": "ver 0.1",
+			"versionNumber": "0.1.0.NEXT",
+			"default": false,
+			"versionDescription": "Package Versioning demo, feature package. Depends on Base",
+			"definitionFile": "config/project-scratch-def.json",
+			"dependencies": [
+				{
+					"package": "VersionsBase"
+				}
+			]
+		},
+		{
+			"path": "src/app",
+			"package": "VersionsApp",
+			"versionName": "ver 0.1",
+			"versionNumber": "0.1.0.NEXT",
+			"default": false,
+			"versionDescription": "Package Versioning demo, app level (org based) package. Depends on All before it",
+			"definitionFile": "config/project-scratch-def.json",
+			"dependencies": [
+				{
+					"package": "VersionsBase"
+				},
+				{
+					"package": "VersionsFeature1"
+				},
+				{
+					"package": "VersionsFeature2"
+				}
+			]
+		}
+	],
+	"name": "PackageVersions",
+	"namespace": "packocz",
+	"sfdcLoginUrl": "https://login.salesforce.com",
+	"sourceApiVersion": "59.0",
+	"packageAliases": {
+		"VersionsBase": "0Ho08000000PAvWCAW",
+		"VersionsFeature1": "0Ho08000000PAvbCAG",
+		"VersionsFeature2": "0Ho08000000PAvgCAG",
+		"VersionsApp": "0Ho08000000PAvlCAG"
+	}
+}
