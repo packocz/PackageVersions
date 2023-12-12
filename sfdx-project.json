@@ -23,7 +23,8 @@
 			"definitionFile": "config/project-scratch-def.json",
 			"dependencies": [
 				{
-					"package": "VersionsBase"
+					"package": "VersionsBase",
+					"versionNumber": "0.1.0.LATEST"
 				}
 			]
 		},
@@ -37,7 +38,8 @@
 			"definitionFile": "config/project-scratch-def.json",
 			"dependencies": [
 				{
-					"package": "VersionsBase"
+					"package": "VersionsBase",
+					"versionNumber": "0.1.0.LATEST"
 				}
 			]
 		},
@@ -51,13 +53,16 @@
 			"definitionFile": "config/project-scratch-def.json",
 			"dependencies": [
 				{
-					"package": "VersionsBase"
+					"package": "VersionsBase",
+					"versionNumber": "0.1.0.LATEST"
 				},
 				{
-					"package": "VersionsFeature1"
+					"package": "VersionsFeature1",
+					"versionNumber": "0.1.0.LATEST"
 				},
 				{
-					"package": "VersionsFeature2"
+					"package": "VersionsFeature2",
+					"versionNumber": "0.1.0.LATEST"
 				}
 			]
 		}
@@ -70,6 +75,10 @@
 		"VersionsBase": "0Ho08000000PAvWCAW",
 		"VersionsFeature1": "0Ho08000000PAvbCAG",
 		"VersionsFeature2": "0Ho08000000PAvgCAG",
-		"VersionsApp": "0Ho08000000PAvlCAG"
+		"VersionsApp": "0Ho08000000PAvlCAG",
+		"VersionsBase@0.1.0-1": "04t08000000UJZgAAO",
+		"VersionsFeature1@0.1.0-1": "04t08000000UJZlAAO",
+		"VersionsFeature2@0.1.0-2": "04t08000000UJZvAAO",
+		"VersionsApp@0.1.0-1": "04t08000000UJa0AAG"
 	}
 }

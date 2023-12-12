@@ -27,6 +27,9 @@ node_modules/
 # Eslint cache
 .eslintcache
 
+# PMD cache
+.pmdCache
+
 # MacOS system files
 .DS_Store
 
@@ -38,3 +41,6 @@ $RECYCLE.BIN/
 
 # Local environment variables
 .env
+
+# VS code settings
+.vscode

@@ -1,18 +1,18 @@
-# Salesforce DX Project: Next Steps
+# Salesforce DX Project: Package Versions
+Testing out the process of developing several dependent packages in a single repository. Focusing on version number bump process (via GitHub PR) and proper ancestory settings.
+## Package Structure
+Typical project with a base package, sibling feature packages and 1 final app-level package with dependencies to all above.
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+* Base
+  * Feature 1
+  * Feature 2
+    * App
 
-## How Do You Plan to Deploy Your Changes?
+# Initial Versions
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
-
-## Configure Your Salesforce DX Project
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
--   [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
--   [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
--   [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
--   [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+| Package      | Version | Dependecies |
+| ----------- | ----------- | -----------
+| base      | 0.1.0-1       | 
+| feature-1   | 0.1.0-1        | base@0.1.0-1
+| feature-2   | 0.1.0-2        | base@0.1.0-1
+| app   | 0.1.0-1        | base@0.1.0-1, feature-1@0.1.0-1, feature-2@0.1.0-2
