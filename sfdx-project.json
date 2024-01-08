@@ -10,7 +10,7 @@
 			"package": "VersionsBase",
 			"versionName": "ver 0.3",
 			"versionNumber": "0.3.0.NEXT",
-			"branch": "",
+			"branch": "feature-validation",
 			"versionDescription": "Package Versioning demo, base package. Top level dependency",
 			"definitionFile": "config/project-scratch-def.json"
 		},
@@ -20,64 +20,20 @@
 			"package": "VersionsFeature1",
 			"versionName": "ver 0.3",
 			"versionNumber": "0.3.0.NEXT",
-			"branch": "",
+			"branch": "feature-validation",
 			"versionDescription": "Package Versioning demo, feature package. Depends on Base",
 			"definitionFile": "config/project-scratch-def.json",
 			"dependencies": [
 				{
 					"package": "VersionsBase",
 					"versionNumber": "0.3.0.LATEST",
-					"branch": ""
-				}
-			]
-		},
-		{
-			"path": "src/feature-2",
-			"default": false,
-			"package": "VersionsFeature2",
-			"versionName": "ver 0.3",
-			"versionNumber": "0.3.0.NEXT",
-			"branch": "",
-			"versionDescription": "Package Versioning demo, feature package. Depends on Base",
-			"definitionFile": "config/project-scratch-def.json",
-			"dependencies": [
-				{
-					"package": "VersionsBase",
-					"versionNumber": "0.3.0.LATEST",
-					"branch": ""
-				}
-			]
-		},
-		{
-			"path": "src/app",
-			"default": false,
-			"package": "VersionsApp",
-			"versionName": "ver 0.3",
-			"versionNumber": "0.3.0.NEXT",
-			"branch": "",
-			"versionDescription": "Package Versioning demo, app level (org based) package. Depends on All before it",
-			"definitionFile": "config/project-scratch-def.json",
-			"dependencies": [
-				{
-					"package": "VersionsBase",
-					"versionNumber": "0.3.0.LATEST",
-					"branch": ""
-				},
-				{
-					"package": "VersionsFeature1",
-					"versionNumber": "0.3.0.LATEST",
-					"branch": ""
-				},
-				{
-					"package": "VersionsFeature2",
-					"versionNumber": "0.3.0.LATEST",
-					"branch": ""
+					"branch": "feature-validation"
 				}
 			]
 		}
 	],
 	"name": "PackageVersions",
-	"namespace": "packocz",
+	"namespace": "",
 	"sfdcLoginUrl": "https://login.salesforce.com",
 	"sourceApiVersion": "59.0",
 	"packageAliases": {

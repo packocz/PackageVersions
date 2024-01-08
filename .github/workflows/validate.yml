@@ -45,10 +45,6 @@ jobs:
             - name: 'Authenticate DevHub'
               run: sfdx auth:sfdxurl:store -f ./DEVHUB_KEY.txt -a devhub
 
-            - name: Add Branch Version tags to changed packages
-              run: |
-                  node ./scripts/node/addBranch.js "origin/${{ github.base_ref }}" "origin/${{ github.head_ref }}"
-
             - name: Validate packages
               env:
                   INSTALLATION_KEYS: ${{ vars.PACKAGE_INSTALLATION_KEYS }}
