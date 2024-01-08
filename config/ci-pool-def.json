@@ -1,0 +1,13 @@
+{
+	"tag": "ci",
+	"maxAllocation": 2,
+	"batchSize": 2,
+	"expiry": 7,
+	"configFilePath": "config/project-scratch-def.json",
+	"relaxAllIPRanges": true,
+	"installAll": false,
+	"enableSourceTracking": false,
+	"retryOnFailure": false,
+	"succeedOnDeploymentErrors": true,
+	"waitTime": 40
+}

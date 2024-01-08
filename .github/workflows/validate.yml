@@ -1,0 +1,51 @@
+name: Validate
+
+on:
+    pull_request:
+        types: [opened, synchronize, reopened]
+        branches:
+            - main
+
+env:
+    SFDX_DISABLE_DNS_CHECK: true
+
+jobs:
+    validate:
+        name: Validate Changes
+        runs-on: 'ubuntu-latest'
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+                  ref: ${{ github.event.inputs.ref }}
+
+            - name: Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ vars.NODE_VERSION }}
+                  cache: npm
+
+            - name: Install dependencies
+              run: |
+                  npm i -g @salesforce/cli @dxatscale/sfpowerscripts${{ vars.SFP_VERSION }}
+                  npm install
+
+            - name: 'Populate auth file with DevHub secret'
+              shell: bash
+              run: |
+                  echo ${{ secrets.DEVHUB_SFDX_AUTH_URL}} > ./DEVHUB_KEY.txt
+                  secretFileSize=$(wc -c "./DEVHUB_KEY.txt" | awk '{print $1}')
+                  if [ $secretFileSize == 1 ]; then
+                      echo "Missing DEVHUB_KEY secret.";
+                      exit 1;
+                  fi
+
+            - name: 'Authenticate DevHub'
+              run: sfdx auth:sfdxurl:store -f ./DEVHUB_KEY.txt -a devhub
+
+            - name: Validate packages
+              env:
+                  INSTALLATION_KEYS: ${{ vars.PACKAGE_INSTALLATION_KEYS }}
+              run: sfp orchestrator:validate --pools ci --targetdevhubusername devhub --deletescratchorg --disableartifactupdate --disablesourcepkgoverride
