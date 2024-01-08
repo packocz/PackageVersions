@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const fs = require('fs');
 const { exec } = require('./exec');
 
 const MAJOR = 0;
@@ -14,49 +13,39 @@ try {
 		process.exit(0);
 	}
 
-	const project = JSON.parse(fs.readFileSync('sfdx-project.json', { encoding: 'utf8' }));
-	const packages = project.packageDirectories;
-	const updatedPackages = [];
-
-	let newPackageVersions = new Map();
-
-	packages.forEach((item, index) => {
-		if (!item.package) {
-			console.log(`Skipping package ${item.path} because it has no package name`);
-			updatedPackages.push(item);
-			return;
+	const changedVersionedPackageFilter = (packageDefintion) => {
+		if (packageDefintion.package === undefined) {
+			return false;
 		}
-		const packageName = item.package;
-		const packagePath = item.path;
-
-		if (!isPackageChanged(packagePath) && !hasChangedDependencies(item, newPackageVersions)) {
-			console.log(`Skipping package ${packageName} because it has not changed`);
-			updatedPackages.push(item);
-			return;
+		const packagePath = packageDefintion.path;
+		const hasChangesInLastCommit = exec(`git diff --name-only HEAD..HEAD~1 -- ${packagePath}`, { trim: true });
+		console.log(`Changes in ${packagePath} in last commit: ${hasChangesInLastCommit}`);
+		if (hasChangesInLastCommit) {
+			return true;
 		}
-		const currentVersionName = item.versionName;
-		const currentVersionNumber = item.versionNumber;
+		return false;
+	};
+
+	const project = require('./sfdxProject.js');
+	const changedPackagesAndDependencies = project.getMatchingAndDependentPackages(changedVersionedPackageFilter);
+
+	for (let step = 0; step < changedPackagesAndDependencies.length; step++) {
+		const packageName = changedPackagesAndDependencies[step].package;
+
+		const currentVersionName = changedPackagesAndDependencies[step].versionName;
+		const currentVersionNumber = changedPackagesAndDependencies[step].versionNumber;
 
 		const bumpedVersionNumber = getBumpedString(currentVersionNumber, bumpType);
 		const bumpedVersionName = getVersionNameString(bumpedVersionNumber);
-		item.versionNumber = bumpedVersionNumber;
-		item.versionName = bumpedVersionName;
+		changedPackagesAndDependencies[step].versionNumber = bumpedVersionNumber;
+		changedPackagesAndDependencies[step].versionName = bumpedVersionName;
 		console.log(
 			`${packageName} bumped from ${currentVersionNumber} (${currentVersionName}) to ${bumpedVersionNumber} (${bumpedVersionName})`
 		);
-		newPackageVersions.set(packageName, bumpedVersionNumber);
-		if (!item.dependencies) {
-			console.log(`Skipping dependency updated for package ${packageName} because it has no dependencies`);
-			updatedPackages.push(item);
-			return;
-		}
-		item.dependencies = getUpdatedDependencies(item, newPackageVersions);
-		updatedPackages.push(item);
-	});
+	}
 
-	project.packageDirectories = updatedPackages;
-	fs.writeFileSync('sfdx-project.json', JSON.stringify(project, null, '\t'));
-	exec('npx prettier --write sfdx-project.json');
+	project.updatePackages(changedPackagesAndDependencies);
+	project.updatePackageDependencies();
 	exec('git add sfdx-project.json');
 	exec('git commit --no-verify --amend --no-edit');
 } catch (error) {
@@ -116,33 +105,4 @@ function getBumpedString(versionString, bumpTypeIndex) {
 
 function getVersionNameString(versionString) {
 	return 'ver ' + versionString.substring(0, 3);
-}
-
-function getUpdatedDependencies(packageItem, newPackageVersions) {
-	const newDependencies = [];
-	packageItem.dependencies.forEach((dependency) => {
-		if (newPackageVersions.has(dependency.package)) {
-			dependency.versionNumber = newPackageVersions.get(dependency.package);
-			console.log(`Dependency on ${dependency.package} bumped to ${dependency.versionNumber}`);
-		}
-		newDependencies.push(dependency);
-	});
-	return newDependencies;
-}
-
-function isPackageChanged(packagePath) {
-	const hasChangesInLastCommit = exec(`git diff --name-only HEAD..HEAD~1 -- ${packagePath}`, { trim: true });
-	console.log(`Changes in ${packagePath} in last commit: ${hasChangesInLastCommit}`);
-	if (hasChangesInLastCommit) {
-		return true;
-	}
-	return false;
-}
-
-function hasChangedDependencies(packageItem, newPackageVersions) {
-	if (!packageItem.dependencies) {
-		return false;
-	}
-	const dependencyPackageNames = packageItem.dependencies.map((package) => package.package);
-	return dependencyPackageNames.some((packageName) => newPackageVersions.has(packageName));
 }
