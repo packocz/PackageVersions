@@ -1,6 +1,7 @@
 const shell = require('shelljs');
 
 function exec(cmd, options) {
+	console.log(`Executing command: ${cmd}`);
 	const defaultOptions = { silent: true };
 	let output = shell.exec(cmd, { ...defaultOptions, ...(options || {}) });
 	if (options && options.toString !== false) {
