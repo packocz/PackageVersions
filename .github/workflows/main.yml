@@ -16,6 +16,9 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+                  ref: ${{ github.event.inputs.ref }}
 
             - name: Setup node
               uses: actions/setup-node@v3
@@ -36,4 +39,4 @@ jobs:
                   GH_USERNAME: ${{ github.actor }}
               run: |
                   git remote set-url --push origin https://$GH_USERNAME:$GH_TOKEN@github.com/packocz/PackageVersions
-                  git push origin
+                  git push origin main --force
