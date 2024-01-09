@@ -10,7 +10,7 @@ env:
 
 jobs:
     validate:
-        name: Validate Changes
+        name: Bump Version
         runs-on: 'ubuntu-latest'
 
         steps:
@@ -26,9 +26,14 @@ jobs:
             - name: Install dependencies
               run: npm install
 
-            - name: Add Branch Version tags to changed packages
+            - name: Bump Version(s)
               run: |
                   node ./scripts/node/bumpVersion.js
 
             - name: Push
-              run: git push
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_USERNAME: ${{ github.actor }}
+              run: |
+                  git remote set-url --push origin https://$GH_USERNAME:$GH_TOKEN@github.com/packocz/PackageVersions
+                  git push origin
