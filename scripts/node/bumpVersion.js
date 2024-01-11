@@ -46,8 +46,6 @@ try {
 
 	project.updatePackages(changedPackagesAndDependencies);
 	project.updatePackageDependencies();
-	exec('git add sfdx-project.json');
-	exec('git commit --no-verify --amend --no-edit');
 } catch (error) {
 	console.error(error);
 	process.exit(1);
