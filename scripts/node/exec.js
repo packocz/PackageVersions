@@ -7,6 +7,7 @@ function exec(cmd, options) {
 	if (options && options.toString !== false) {
 		output = output.toString();
 		output = options.trim ? output.trim() : output;
+		console.log(`Command output: ${output}`);
 	}
 
 	return output;

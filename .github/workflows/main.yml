@@ -1,0 +1,48 @@
+name: Version Bump
+
+on:
+    push:
+        branches:
+            - main
+        paths-ignore: sfdx-project.json
+
+env:
+    SFDX_DISABLE_DNS_CHECK: true
+
+jobs:
+    validate:
+        name: Bump Version
+        runs-on: 'ubuntu-latest'
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ vars.NODE_VERSION }}
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Set Remote
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_USERNAME: ${{ github.actor }}
+                  GH_USERID: ${GITHUB_ACTOR_ID}
+              run: |
+                  git remote set-url --push origin https://$GH_USERNAME:$GH_TOKEN@github.com/packocz/PackageVersions
+                  git checkout ${{ github.event.inputs.ref }}
+                  git config --global user.email "$GH_USERID+GH_USERNAME@users.noreply.github.com"
+                  git config --global user.name "$GH_USERNAME"
+
+            - name: Bump Version(s) and Push
+              run: |
+                  node ./scripts/node/bumpVersion.js
+                  git add sfdx-project.json
+                  git commit --no-verify --amend --no-edit
+                  git push ${{ github.event.inputs.ref }} --force

@@ -61,8 +61,12 @@ module.exports = {
 				packages[step].dependencies.forEach((dependency) => {
 					if (packageVersions.has(dependency.package)) {
 						dependency.versionNumber = packageVersions.get(dependency.package).versionNumber.replace('NEXT', 'LATEST');
-						dependency.branch = packageVersions.get(dependency.package).branch;
-						console.log(`Dependency on ${dependency.package} set to ${dependency.versionNumber}-${dependency.branch}`);
+						const branch = packageVersions.get(dependency.package).branch;
+						if (branch) {
+							dependency.branch = packageVersions.get(dependency.package).branch;
+						}
+						const dependencyVersionWithBranch = dependency.versionNumber + (dependency.branch ? `-${dependency.branch}` : '');
+						console.log(`Dependency on ${dependency.package} set to ${dependencyVersionWithBranch}`);
 					}
 					newDependencies.push(dependency);
 				});
