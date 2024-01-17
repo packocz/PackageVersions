@@ -6,7 +6,7 @@ const repo = {
 };
 const release = {
 	tag: 'v1.0.0',
-	commitsh: 'master',
+	commitsh: 'create-release',
 	name: 'v1.0.0',
 	body: 'Initial release',
 	isDraft: false
