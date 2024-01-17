@@ -1,0 +1,33 @@
+name: Version Bump
+
+on:
+    workflow_dispatch:
+
+env:
+    SFDX_DISABLE_DNS_CHECK: true
+
+jobs:
+    validate:
+        name: Create Release
+        runs-on: 'ubuntu-latest'
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Setup node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ vars.NODE_VERSION }}
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Create Release
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  node ./scripts/node/createRelease.js
