@@ -2,6 +2,9 @@ name: Version Bump
 
 on:
     workflow_dispatch:
+    push:
+        branches:
+            - create-release
 
 env:
     SFDX_DISABLE_DNS_CHECK: true
