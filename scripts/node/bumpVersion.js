@@ -13,21 +13,8 @@ try {
 		process.exit(0);
 	}
 
-	const changedVersionedPackageFilter = (packageDefintion) => {
-		if (packageDefintion.package === undefined) {
-			return false;
-		}
-		const packagePath = packageDefintion.path;
-		const hasChangesInLastCommit = exec(`git diff --name-only HEAD..HEAD~1 -- ${packagePath}`, { trim: true });
-		console.log(`Changes in ${packagePath} in last commit: ${hasChangesInLastCommit}`);
-		if (hasChangesInLastCommit) {
-			return true;
-		}
-		return false;
-	};
-
 	const project = require('./sfdxProject.js');
-	const changedPackagesAndDependencies = project.getMatchingAndDependentPackages(changedVersionedPackageFilter);
+	const changedPackagesAndDependencies = project.getMatchingAndDependentPackages(evaluatePackagesToBump());
 
 	for (let step = 0; step < changedPackagesAndDependencies.length; step++) {
 		const packageName = changedPackagesAndDependencies[step].package;
@@ -53,20 +40,69 @@ try {
 
 function evaluateBumpType() {
 	let bumpType;
-	if (process.argv.length > 1) {
+	if (process.argv.length > 2) {
 		bumpType = process.argv[2];
 		console.log(`Override Version Bump Type: ${bumpType}`);
 	}
 	const commitMessage = exec('git log -1 --pretty=%B', { trim: true });
 	console.log(`The commit message was: ${commitMessage}`);
 
-	const isMajor = bumpType === 'major' || isSemanticMajor(commitMessage);
-	const isMinor = !isMajor && (bumpType === 'minor' || isSemanticMinor(commitMessage));
-	const isPatch = !(isMajor || isMinor) && (bumpType === 'patch' || isSemanticPatch(commitMessage));
+	const isOverrideMajor = bumpType === 'major';
+	const isOverrideMinor = bumpType === 'minor';
+	const isOverridePatch = bumpType === 'patch';
+	const isOverrideBuild = bumpType === 'build';
+	const isOverride = isOverrideMajor || isOverrideMinor || isOverridePatch || isOverrideBuild;
+
+	const isMajor = isOverrideMajor || (!isOverride && isSemanticMajor(commitMessage));
+	const isMinor = isOverrideMinor || (!isOverride && isSemanticMinor(commitMessage));
+	const isPatch = isOverridePatch || (!isOverride && isSemanticPatch(commitMessage));
 
 	bumpType = isMajor ? MAJOR : isMinor ? MINOR : isPatch ? PATCH : BUILD;
 	console.log(`Version Bump Type: ${isMajor ? 'major' : isMinor ? 'minor' : isPatch ? 'patch' : 'build'}`);
 	return bumpType;
+}
+
+function evaluatePackagesToBump() {
+	if (process.argv.length > 3 && process.argv[3]) {
+		const manualPackageOverride = process.argv[3];
+		if (manualPackageOverride === 'all') {
+			console.log(`Override bumped Packages: all`);
+			const packageAllFilter = (packageDefinition) => {
+				if (packageDefinition.package === undefined) {
+					return false;
+				}
+				return true;
+			};
+			return packageAllFilter;
+		}
+		const manualPackageCommaSeparatedList = process.argv[3];
+		console.log(`Override bumped Packages: ${manualPackageCommaSeparatedList}`);
+		const packageNameList = manualPackageCommaSeparatedList.split(',');
+		const packageNameFilter = (packageDefinition) => {
+			if (packageDefinition.package === undefined) {
+				return false;
+			}
+			if (packageNameList.includes(packageDefinition.package)) {
+				return true;
+			}
+			return false;
+		};
+		return packageNameFilter;
+	}
+
+	const changedVersionedPackageFilter = (packageDefinition) => {
+		if (packageDefinition.package === undefined) {
+			return false;
+		}
+		const packagePath = packageDefinition.path;
+		const hasChangesInLastCommit = exec(`git diff --name-only HEAD..HEAD~1 -- ${packagePath}`, { trim: true });
+		console.log(`Changes in ${packagePath} in last commit: ${hasChangesInLastCommit}`);
+		if (hasChangesInLastCommit) {
+			return true;
+		}
+		return false;
+	};
+	return changedVersionedPackageFilter;
 }
 
 function isSemanticMajor(commitMessage) {

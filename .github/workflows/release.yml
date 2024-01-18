@@ -2,15 +2,15 @@ name: Version Bump
 
 on:
     workflow_dispatch:
-    push:
-        branches:
-            - create-release
 
 env:
     SFDX_DISABLE_DNS_CHECK: true
+    COMMIT_ID: ${{ inputs.commit }}
+    BUILD_TAG: ${{ inputs.buildTag }}
+    MODE: ${{ inputs.mode }}
 
 jobs:
-    validate:
+    create-release:
         name: Create Release
         runs-on: 'ubuntu-latest'
 
@@ -27,10 +27,64 @@ jobs:
                   cache: npm
 
             - name: Install dependencies
-              run: npm install
+              run: |
+                  npm i -g @salesforce/cli @dxatscale/sfpowerscripts${{ vars.SFP_VERSION }}
+                  npm install
 
-            - name: Create Release
+            - name: Create packages
+              run: |
+                  sfp orchestrator:build -v devhub --branch main --buildnumber ${GITHUB_RUN_ID} --tag=${BUILD_TAG}
+                  sfp orchestrator:promote -v devhub
+
+            - name: 'Populate auth file with DevHub secret'
+              shell: bash
+              run: |
+                  echo ${{ secrets.DEVHUB_SFDX_AUTH_URL}} > ./DEVHUB_KEY.txt
+                  secretFileSize=$(wc -c "./DEVHUB_KEY.txt" | awk '{print $1}')
+                  if [ $secretFileSize == 1 ]; then
+                      echo "Missing DEVHUB_KEY secret.";
+                      exit 1;
+                  fi
+
+            - name: 'Authenticate DevHub'
+              run: sfdx auth:sfdxurl:store -f ./DEVHUB_KEY.txt -a devhub
+
+            - name: Checkout commit
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_USERNAME: ${{ github.actor }}
+              run: |
+                  git remote set-url origin https://$GH_USERNAME:$GH_TOKEN@github.com/packocz/PackageVersions
+                  git tag "${BUILD_TAG}" origin/main
+                  git push origin "${BUILD_TAG}"
+
+            - name: Generate Change Log
+              run: |
+                  touch changelog.md || true
+                  sfp changelog:generate --branchname changelog ---releasename ${BUILD_TAG} --workitemfilter "${TICKET_REGEX}" --directory="changelog" --workitemurl="${WORKITEM_URL}" --showallartifacts >> changelog.md
+                  sed -n "/Generating changelog.../,/Committed File/p" changelog.md > temp.txt && mv temp.txt changelog.md
+                  sed '1d;$d' changelog.md > temp.txt && mv temp.txt changelog.md
+
+            - name: Release Definition
+              run: |
+                  sfp releasedefinition:generate --branchname "release/${BUILD_TAG}" --gitref "${BUILD_TAG}" --directory "release-definitions/${BUILD_TAG}" --configfile config/release-definition.yml --releasename "${BUILD_TAG}"
+                  git fetch origin "release/${BUILD_TAG}"
+                  git checkout "release/${BUILD_TAG}"
+
+            - name: Create Release on GitHub
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  node ./scripts/node/createRelease.js
+                  node ./scripts/node/createRelease.js "${BUILD_TAG}" "changelog.md"
+
+            - name: Bump Version on main and Push
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_USERNAME: ${{ github.actor }}
+                  GH_USERID: ${GITHUB_ACTOR_ID}
+              run: |
+                  git checkout origin/main
+                  node ./scripts/node/bumpVersion.js minor all
+                  git add sfdx-project.json
+                  git commit -m "Bump Package Version(s) post release"
+                  git push origin main
