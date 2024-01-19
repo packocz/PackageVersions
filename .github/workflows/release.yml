@@ -31,13 +31,23 @@ jobs:
 
             - name: Install dependencies
               run: |
-                  npm i -g @dxatscale/sfpowerscripts${{ vars.SFP_VERSION }}
+                  npm i -g @salesforce/cli @dxatscale/sfpowerscripts${{ vars.SFP_VERSION }}
                   npm install
 
             - name: Create packages
               run: |
                   sfp orchestrator:quickbuild -v devhub --branch main --buildnumber ${GITHUB_RUN_ID} --tag=${BUILD_TAG}
                   sfp orchestrator:promote -v devhub
+
+            - name: 'Populate auth file with DevHub secret'
+              shell: bash
+              run: |
+                  echo ${{ secrets.DEVHUB_SFDX_AUTH_URL}} > ./DEVHUB_KEY.txt
+                  secretFileSize=$(wc -c "./DEVHUB_KEY.txt" | awk '{print $1}')
+                  if [ $secretFileSize == 1 ]; then
+                      echo "Missing DEVHUB_KEY secret.";
+                      exit 1;
+                  fi
 
             - name: 'Authenticate DevHub'
               run: sfdx auth:sfdxurl:store -f ./DEVHUB_KEY.txt -a devhub
