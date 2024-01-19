@@ -1,0 +1,83 @@
+{
+	"orgs": [],
+	"releases": [
+		{
+			"names": ["v2.0.0"],
+			"buildNumber": 1,
+			"workItems": {
+				"": ["a320653d", "0e24d9b6"]
+			},
+			"artifacts": [
+				{
+					"name": "VersionsFeature2",
+					"to": "1a5f1cc2",
+					"version": "0.1.0.38",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsFeature1",
+					"to": "1a5f1cc2",
+					"version": "0.1.0.30",
+					"latestCommitId": "0e24d9b6",
+					"commits": [
+						{
+							"commitId": "0e24d9b6",
+							"date": "2024-01-18T09:13:05+01:00",
+							"author": "packocz",
+							"message": "feat some feat",
+							"body": ""
+						},
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsBase",
+					"to": "1a5f1cc2",
+					"version": "0.1.0.41",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsApp",
+					"to": "1a5f1cc2",
+					"version": "0.1.0.30",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				}
+			],
+			"hashId": "1a58d6d3ea1725f36da95832975aafaa0eb8a02d",
+			"date": "Fri Jan 19 2024 12:29:14 GMT+0000 (Coordinated Universal Time)"
+		}
+	]
+}
