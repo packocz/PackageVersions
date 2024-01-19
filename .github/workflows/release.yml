@@ -70,7 +70,7 @@ jobs:
 
             - name: Generate Change Log
               run: |
-                  sfp changelog:generate --branchname changelog --releasename ${BUILD_TAG} --workitemfilter ${TICKET_REGEX} --directory=changelog --workitemurl=${WORKITEM_URL} --showallartifacts
+                  sfp changelog:generate --branchname=changelog --releasename=${BUILD_TAG} --workitemfilter=${TICKET_REGEX} --directory=changelog --workitemurl=${WORKITEM_URL} --showallartifacts
 
             - name: Generate Change Log
               run: |
