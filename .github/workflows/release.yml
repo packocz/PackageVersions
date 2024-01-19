@@ -96,7 +96,7 @@ jobs:
                   GH_USERID: ${GITHUB_ACTOR_ID}
               run: |
                   git checkout origin/main
-                  node ./scripts/node/bumpVersion.js minor all
+                  node ./scripts/node/bumpVersion.js "minor" "all"
                   git add sfdx-project.json
                   git commit -m "Bump Package Version(s) post release"
                   git push origin main

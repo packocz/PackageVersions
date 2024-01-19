@@ -65,6 +65,7 @@ function evaluateBumpType() {
 function evaluatePackagesToBump() {
 	if (process.argv.length > 3 && process.argv[3]) {
 		const manualPackageOverride = process.argv[3];
+		console.log(`Override bumped Packages: ${manualPackageOverride}`);
 		if (manualPackageOverride === 'all') {
 			console.log(`Override bumped Packages: all`);
 			const packageAllFilter = (packageDefinition) => {
@@ -75,9 +76,7 @@ function evaluatePackagesToBump() {
 			};
 			return packageAllFilter;
 		}
-		const manualPackageCommaSeparatedList = process.argv[3];
-		console.log(`Override bumped Packages: ${manualPackageCommaSeparatedList}`);
-		const packageNameList = manualPackageCommaSeparatedList.split(',');
+		const packageNameList = manualPackageOverride.split(',');
 		const packageNameFilter = (packageDefinition) => {
 			if (packageDefinition.package === undefined) {
 				return false;
