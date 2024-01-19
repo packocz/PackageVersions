@@ -2,15 +2,22 @@ name: Release
 
 on:
     workflow_dispatch:
+        inputs:
+            commit:
+                description: Commit, branch or tag to create build from
+                default: main
+                required: true
+            buildTag:
+                description: Custom name for the build
+                required: true
     push:
         branches:
             - create-release
 
 env:
     SFDX_DISABLE_DNS_CHECK: true
-    COMMIT_ID: ${{ inputs.commit }}
-    BUILD_TAG: ${{ inputs.buildTag }}
-    MODE: ${{ inputs.mode }}
+    COMMIT_ID: 'create-release' #${{ inputs.commit }}
+    BUILD_TAG: 'v2.0.0' #${{ inputs.buildTag }}
 
 jobs:
     create-release:
