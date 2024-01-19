@@ -63,7 +63,8 @@ function evaluateBumpType() {
 }
 
 function evaluatePackagesToBump() {
-	console.log(process.argv.length);
+	console.log(`how many arguments [${process.argv.length}]`);
+	console.log(`what are the arguments [${JSON.stringify(process.argv)}]`);
 	if (process.argv.length > 3 && process.argv[3]) {
 		const manualPackageOverride = process.argv[3];
 		console.log(`Override bumped Packages: ${manualPackageOverride}`);
