@@ -70,9 +70,7 @@ jobs:
 
             - name: Generate Change Log
               run: |
-                  touch changelog.md
-                  sfp changelog:generate --branchname changelog --releasename ${BUILD_TAG} --workitemfilter "${TICKET_REGEX}" --directory="changelog" --workitemurl="${WORKITEM_URL}" --showallartifacts --nopush >> changelog.md
-                  sfp changelog:generate --branchname changelog --releasename ${BUILD_TAG} --workitemfilter "${TICKET_REGEX}" --directory="changelog" --workitemurl="${WORKITEM_URL}" --showallartifacts
+                  sfp changelog:generate --branchname changelog --releasename ${BUILD_TAG} --workitemfilter "${TICKET_REGEX}" --directory="changelog" --workitemurl="${WORKITEM_URL}" --showallartifacts >> changelog.md
                   sed -n "/Generating changelog.../,/Committed File/p" changelog.md > temp.txt && mv temp.txt changelog.md
                   sed '1d;$d' changelog.md > temp.txt && mv temp.txt changelog.md
 
