@@ -57,6 +57,7 @@ jobs:
             - name: Create packages
               run: |
                   sfp orchestrator:quickbuild -v devhub --branch ${COMMIT_ID} --buildnumber ${GITHUB_RUN_ID} --tag=${BUILD_TAG}
+                  sfp orchestrator:publish --artifactdir artifacts --gittag --pushgittag -f scripts/bash/publishSkip.sh
               # sfp orchestrator:promote -v devhub
 
             - name: Checkout commit
