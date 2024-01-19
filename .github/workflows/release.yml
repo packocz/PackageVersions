@@ -34,11 +34,6 @@ jobs:
                   npm i -g @salesforce/cli @dxatscale/sfpowerscripts${{ vars.SFP_VERSION }}
                   npm install
 
-            - name: Create packages
-              run: |
-                  sfp orchestrator:quickbuild -v devhub --branch main --buildnumber ${GITHUB_RUN_ID} --tag=${BUILD_TAG}
-                  sfp orchestrator:promote -v devhub
-
             - name: 'Populate auth file with DevHub secret'
               shell: bash
               run: |
@@ -51,6 +46,11 @@ jobs:
 
             - name: 'Authenticate DevHub'
               run: sfdx auth:sfdxurl:store -f ./DEVHUB_KEY.txt -a devhub
+
+            - name: Create packages
+              run: |
+                  sfp orchestrator:quickbuild -v devhub --branch main --buildnumber ${GITHUB_RUN_ID} --tag=${BUILD_TAG}
+                  sfp orchestrator:promote -v devhub
 
             - name: Checkout commit
               env:
