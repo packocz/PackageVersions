@@ -62,10 +62,10 @@ jobs:
             - name: 'Authenticate DevHub'
               run: sfdx auth:sfdxurl:store -f ./DEVHUB_KEY.txt -a devhub
 
-            - name: Create packages
-              run: |
-                  sfp orchestrator:quickbuild -v devhub --branch ${COMMIT_ID} --buildnumber ${GITHUB_RUN_ID} --tag=${RELEASE_TAG}
-                  sfp orchestrator:publish --artifactdir artifacts --gittag --pushgittag -f scripts/bash/publishSkip.sh
+            # - name: Create packages
+            #   run: |
+            #       #fp orchestrator:quickbuild -v devhub --branch ${COMMIT_ID} --buildnumber ${GITHUB_RUN_ID} --tag=${RELEASE_TAG}
+            #       sfp orchestrator:publish --artifactdir artifacts --gittag --pushgittag -f scripts/bash/publishSkip.sh
 
             # sfp orchestrator:promote -v devhub
             - name: Generate and push Release Definition
@@ -86,7 +86,7 @@ jobs:
 
             - name: Generate Change Log
               run: |
-                  sfp changelog:generate --branchname=origin/changelog --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=release-definitions --workitemurl=${WORKITEM_URL} --showallartifacts >> changelog.md
+                  sfp changelog:generate --branchname=changelog --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=release-definitions --workitemurl=${WORKITEM_URL} --showallartifacts >> changelog.md
 
             - name: Generate Change Log
               run: |
