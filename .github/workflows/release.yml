@@ -18,7 +18,7 @@ env:
     SFDX_DISABLE_DNS_CHECK: true
     COMMIT_ID: ${{ inputs.commit }}
     RELEASE_NAME: ${{ inputs.release-name }}
-    RELEASE_TAG: '${{ inputs.release-name }}.${{ inputs.buildTag }}'
+    RELEASE_TAG: '${{ inputs.release-name }}.${{ inputs.release-number }}'
 
 jobs:
     create-release:
