@@ -24,6 +24,98 @@
 			],
 			"hashId": "806a64fbd0b51768328a3e718a8b3f23fe468b03",
 			"date": "Wed Jan 24 2024 15:59:24 GMT+0100 (GMT+01:00)"
+		},
+		{
+			"names": ["app-v2.0"],
+			"buildNumber": 2,
+			"workItems": {
+				"": ["62a6742b", "a320653d", "846904ba", "4b17c23a"]
+			},
+			"artifacts": [
+				{
+					"name": "VersionsFeature2",
+					"to": "9bb72c07",
+					"version": "0.2.0.7",
+					"latestCommitId": "62a6742b",
+					"commits": [
+						{
+							"commitId": "62a6742b",
+							"date": "2024-01-24T16:03:20+01:00",
+							"author": "sfpowerscripts",
+							"message": "feat: changes to apps",
+							"body": ""
+						},
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsFeature1",
+					"to": "9bb72c07",
+					"version": "0.3.0.3",
+					"latestCommitId": "62a6742b",
+					"commits": [
+						{
+							"commitId": "62a6742b",
+							"date": "2024-01-24T16:03:20+01:00",
+							"author": "sfpowerscripts",
+							"message": "feat: changes to apps",
+							"body": ""
+						},
+						{
+							"commitId": "846904ba",
+							"date": "2024-01-24T15:40:05+01:00",
+							"author": "sfpowerscripts",
+							"message": "move",
+							"body": ""
+						},
+						{
+							"commitId": "4b17c23a",
+							"date": "2024-01-24T15:40:05+01:00",
+							"author": "packocz",
+							"message": "change",
+							"body": ""
+						},
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsBase",
+					"to": "9bb72c07",
+					"version": "0.1.0.46",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsApp",
+					"from": "a2a28a6a",
+					"to": "9bb72c07",
+					"version": "0.3.0.3",
+					"latestCommitId": "a320653d",
+					"commits": []
+				}
+			],
+			"hashId": "0e031236641743d1c785c368c9eeed6ded937298",
+			"date": "Wed Jan 24 2024 16:13:10 GMT+0000 (Coordinated Universal Time)"
 		}
 	]
 }
