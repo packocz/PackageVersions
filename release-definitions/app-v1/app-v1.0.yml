@@ -1,0 +1,13 @@
+release: app-v1.0
+skipIfAlreadyInstalled: true
+skipArtifactUpdate: false
+artifacts:
+    VersionsApp: 0.2.0-6
+    VersionsBase: 0.1.0-43
+    VersionsFeature1: 0.2.0-6
+    VersionsFeature2: 0.1.0-40
+packageDependencies:
+    VersionsApp@0.1.0-1: 04t08000000UJa0AAG
+    VersionsBase@0.1.0-1: 04t08000000UJZgAAO
+    VersionsFeature1@0.1.0-1: 04t08000000UJZlAAO
+    VersionsFeature2@0.1.0-2: 04t08000000UJZvAAO
