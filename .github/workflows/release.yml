@@ -70,7 +70,7 @@ jobs:
 
             - name: Generate and push Release Definition
               run: |
-                  sfp releasedefinition:generate --branchname "${COMMIT_ID}" --gitref "${RELEASE_TAG}" --directory "release-definitions/${RELEASE_NAME}" --configfile config/release-definition.yml --releasename "${RELEASE_TAG}"
+                  sfp releasedefinition:generate --branchname "${COMMIT_ID}" --gitref "${COMMIT_ID}" --directory "release-definitions/${RELEASE_NAME}" --configfile config/release-definition.yml --releasename "${RELEASE_TAG}"
                   git fetch origin "${COMMIT_ID}"
                   git checkout "${COMMIT_ID}"
 
