@@ -31,6 +31,13 @@ jobs:
               with:
                   fetch-depth: 0
 
+            - name: Auth Git
+              env:
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  GH_USERNAME: ${{ github.actor }}
+              run: |
+                  git remote set-url origin https://$GH_USERNAME:$GH_TOKEN@github.com/packocz/PackageVersions
+
             - name: Setup node
               uses: actions/setup-node@v3
               with:
@@ -57,39 +64,40 @@ jobs:
 
             - name: Create packages
               run: |
-                  sfp orchestrator:quickbuild -v devhub --branch ${COMMIT_ID} --buildnumber ${GITHUB_RUN_ID} --tag=${BUILD_TAG}
+                  sfp orchestrator:quickbuild -v devhub --branch ${COMMIT_ID} --buildnumber ${GITHUB_RUN_ID} --tag=${RELEASE_TAG}
                   sfp orchestrator:publish --artifactdir artifacts --gittag --pushgittag -f scripts/bash/publishSkip.sh
               # sfp orchestrator:promote -v devhub
 
-            - name: Checkout commit
+            - name: Generate and push Release Definition
+              run: |
+                  sfp releasedefinition:generate --branchname "${COMMIT_ID}" --gitref "${RELEASE_TAG}" --directory "release-definitions/${RELEASE_NAME}" --configfile config/release-definition.yml --releasename "${RELEASE_TAG}"
+                  git fetch origin "${COMMIT_ID}"
+                  git checkout "${COMMIT_ID}"
+
+            - name: Tag Release
               env:
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   GH_USERNAME: ${{ github.actor }}
               run: |
-                  git remote set-url origin https://$GH_USERNAME:$GH_TOKEN@github.com/packocz/PackageVersions
-                  git tag "${BUILD_TAG}" "${COMMIT_ID}"
-                  git push origin "${BUILD_TAG}"
+                  git tag "${RELEASE_TAG}" "${COMMIT_ID}"
+                  git push origin "${RELEASE_TAG}"
+                  git checkout -b "release/${RELEASE_NAME}"
+                  git push origin "release/${RELEASE_NAME}"
 
             - name: Generate Change Log
               run: |
-                  sfp changelog:generate --branchname=origin/changelog --releasename=${BUILD_TAG} --workitemfilter=${TICKET_REGEX} --directory=release-definitions --workitemurl=${WORKITEM_URL} --showallartifacts >> changelog.md
+                  sfp changelog:generate --branchname=origin/changelog --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=release-definitions --workitemurl=${WORKITEM_URL} --showallartifacts >> changelog.md
 
             - name: Generate Change Log
               run: |
                   sed -n "/Generating changelog.../,/Committed File/p" changelog.md > temp.txt && mv temp.txt changelog.md
                   sed '1d;$d' changelog.md > temp.txt && mv temp.txt changelog.md
 
-            - name: Release Definition
-              run: |
-                  sfp releasedefinition:generate --branchname "release/${BUILD_TAG}" --gitref "${BUILD_TAG}" --directory "release-definitions/${BUILD_TAG}" --configfile config/release-definition.yml --releasename "${BUILD_TAG}"
-                  git fetch origin "release/${BUILD_TAG}"
-                  git checkout "release/${BUILD_TAG}"
-
             - name: Create Release on GitHub
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
-                  node ./scripts/node/createRelease.js "${BUILD_TAG}" "changelog.md"
+                  node ./scripts/node/createRelease.js "${RELEASE_TAG}" "changelog.md"
 
             - name: Bump Version on main and Push
               env:
