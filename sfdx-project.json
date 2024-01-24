@@ -18,8 +18,8 @@
 			"path": "src/feature-1",
 			"default": false,
 			"package": "VersionsFeature1",
-			"versionName": "ver 0.1",
-			"versionNumber": "0.1.0.NEXT",
+			"versionName": "ver 0.2",
+			"versionNumber": "0.2.0.NEXT",
 			"branch": "",
 			"versionDescription": "Package Versioning demo, feature package. Depends on Base",
 			"definitionFile": "config/project-scratch-def.json",
@@ -50,8 +50,8 @@
 			"path": "src/app",
 			"default": false,
 			"package": "VersionsApp",
-			"versionName": "ver 0.1",
-			"versionNumber": "0.1.0.NEXT",
+			"versionName": "ver 0.2",
+			"versionNumber": "0.2.0.NEXT",
 			"branch": "",
 			"versionDescription": "Package Versioning demo, app level (org based) package. Depends on All before it",
 			"definitionFile": "config/project-scratch-def.json",
@@ -62,7 +62,7 @@
 				},
 				{
 					"package": "VersionsFeature1",
-					"versionNumber": "0.1.0.LATEST"
+					"versionNumber": "0.2.0.LATEST"
 				},
 				{
 					"package": "VersionsFeature2",
