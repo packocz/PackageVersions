@@ -1,0 +1,9 @@
+release: 'CRM-0.1.0'
+skipIfAlreadyInstalled: true
+artifacts:
+    base: create-release
+    feature-1: create-release
+    feature-2: create-release
+    app: create-release
+changelog:
+    workItemFilter: 'feat'
