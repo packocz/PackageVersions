@@ -1,0 +1,32 @@
+name: Release
+
+on:
+    workflow_dispatch:
+        inputs:
+            commit:
+                description: Commit, branch or tag to create build from
+                default: main
+                required: true
+            release-name:
+                description: Custom name for the release, e.g. APP-v1.0 from "APP-v1.0.1"
+                required: true
+            release-number:
+                description: Incremental number for the release, e.g last 1 from  from "APP-v1.0.1"
+                required: true
+
+env:
+    SFDX_DISABLE_DNS_CHECK: true
+    COMMIT_ID: ${{ inputs.commit }}
+    RELEASE_NAME: ${{ inputs.release-name }}
+    RELEASE_TAG: '${{ inputs.release-name }}.${{ inputs.buildTag }}'
+
+jobs:
+    create-release:
+        name: Create Release
+        runs-on: 'ubuntu-latest'
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
