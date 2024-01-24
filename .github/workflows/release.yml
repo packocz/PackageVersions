@@ -71,6 +71,7 @@ jobs:
                   sfp releasedefinition:generate --branchname "${COMMIT_ID}" --gitref "${COMMIT_ID}" --directory "release-definitions/${RELEASE_NAME}" --configfile config/release-definition.yml --releasename "${RELEASE_TAG}"
                   git fetch origin "${COMMIT_ID}"
                   git checkout "${COMMIT_ID}"
+                  git pull origin "${COMMIT_ID}"
 
             - name: Tag packages
               run: |
@@ -90,7 +91,7 @@ jobs:
 
             - name: Generate Change Log
               run: |
-                  sfp changelog:generate --branchname=changelog --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=release-definitions --workitemurl=${WORKITEM_URL} --showallartifacts >> changelog.md
+                  sfp changelog:generate --branchname=changes --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=release-definitions --workitemurl=${WORKITEM_URL} --showallartifacts >> changelog.md
 
             - name: Generate Change Log
               run: |
