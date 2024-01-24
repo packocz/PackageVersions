@@ -1,0 +1,29 @@
+{
+	"orgs": [],
+	"releases": [
+		{
+			"names": ["app-v1.0"],
+			"buildNumber": 1,
+			"workItems": {},
+			"artifacts": [
+				{
+					"name": "VersionsApp",
+					"to": "a2a28a6a",
+					"version": "0.2.0.5",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				}
+			],
+			"hashId": "806a64fbd0b51768328a3e718a8b3f23fe468b03",
+			"date": "Wed Jan 24 2024 15:59:24 GMT+0100 (GMT+01:00)"
+		}
+	]
+}
