@@ -6,6 +6,7 @@ public with sharing class CustomObjectController {
 		System.debug('Test');
 		System.debug('Test');
 		System.debug('Test');
+		System.debug('Test');
 		return [SELECT Id, Name FROM CustomObject__c WHERE Account__c = :accountId];
 	}
 }
