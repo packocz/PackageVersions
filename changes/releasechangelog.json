@@ -120,6 +120,71 @@
 			],
 			"hashId": "64e346a920d7adbc8a295f6bdc2115ca9f94e75a",
 			"date": "Thu Jan 25 2024 10:36:23 GMT+0000 (Coordinated Universal Time)"
+		},
+		{
+			"names": ["app-v8.0"],
+			"buildNumber": 2,
+			"workItems": {
+				"": ["b41ceccd", "f81ab55c", "1ede1ba6"]
+			},
+			"artifacts": [
+				{
+					"name": "VersionsFeature2",
+					"from": "26c6c525",
+					"to": "b41ceccd",
+					"version": "0.5.0.5",
+					"latestCommitId": "b41ceccd",
+					"commits": [
+						{
+							"commitId": "b41ceccd",
+							"date": "2024-01-25T12:14:58+01:00",
+							"author": "JakubNovotny-ext43587",
+							"message": "Dummy change",
+							"body": ""
+						},
+						{
+							"commitId": "f81ab55c",
+							"date": "2024-01-25T12:07:31+01:00",
+							"author": "JakubNovotny-ext43587",
+							"message": "Branch name fix",
+							"body": ""
+						},
+						{
+							"commitId": "1ede1ba6",
+							"date": "2024-01-25T11:43:11+01:00",
+							"author": "JakubNovotny-ext43587",
+							"message": "Changelog debug",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsFeature1",
+					"from": "26c6c525",
+					"to": "b41ceccd",
+					"version": "0.6.0.5",
+					"latestCommitId": "9aec006a",
+					"commits": []
+				},
+				{
+					"name": "VersionsBase",
+					"from": "26c6c525",
+					"to": "b41ceccd",
+					"version": "0.4.0.5",
+					"latestCommitId": "a320653d",
+					"commits": []
+				},
+				{
+					"name": "VersionsApp",
+					"from": "26c6c525",
+					"to": "b41ceccd",
+					"version": "0.6.0.5",
+					"latestCommitId": "a320653d",
+					"commits": []
+				}
+			],
+			"hashId": "675e83a440cb1f1278a64a7d4776f8e0001c5ce7",
+			"date": "Thu Jan 25 2024 11:27:32 GMT+0000 (Coordinated Universal Time)"
 		}
 	]
 }
