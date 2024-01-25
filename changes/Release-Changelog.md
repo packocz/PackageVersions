@@ -1,3 +1,41 @@
+<a id=b506ba29f0f135836f639b37d09d6d702824058b></a>
+
+# app-v9.0
+
+Cumulative Release Number: <b>3</b>
+
+Matching defintion first created or deployed to an org on: Thu Jan 25 2024 11:47:16 GMT+0000 (Coordinated Universal Time)
+
+### Artifacts :package:
+
+-   **VersionsFeature2** v0.5.0.6 (f407aed4)
+
+-   **VersionsFeature1** v0.6.0.6 (f407aed4)
+
+-   **VersionsBase** v0.4.0.6 (f407aed4)
+
+-   **VersionsApp** v0.6.0.6 (f407aed4)
+
+### Work Items :gem:
+
+[](/)
+
+### Commits :book:
+
+#### VersionsFeature2
+
+| Date       | Time     | Commit ID | Commit Message |
+| ---------- | -------- | --------- | -------------- |
+| 25/01/2024 | 11:42:33 | f407aed4  | Name fixes     |
+
+### Additional Information
+
+The following artifacts' version may have changed due to an update in the scratch org definition file, incremented package version in SFDX project configuration, or build all packages:
+
+-   VersionsFeature1
+-   VersionsBase
+-   VersionsApp
+
 <a id=675e83a440cb1f1278a64a7d4776f8e0001c5ce7></a>
 
 # app-v8.0
