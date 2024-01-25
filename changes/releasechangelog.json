@@ -1,0 +1,125 @@
+{
+	"orgs": [],
+	"releases": [
+		{
+			"names": ["app-v4.0"],
+			"buildNumber": 1,
+			"workItems": {
+				"": ["922eb741", "9aec006a", "62a6742b", "a320653d", "846904ba", "4b17c23a"]
+			},
+			"artifacts": [
+				{
+					"name": "VersionsFeature2",
+					"to": "26c6c525",
+					"version": "0.4.0.1",
+					"latestCommitId": "922eb741",
+					"commits": [
+						{
+							"commitId": "922eb741",
+							"date": "2024-01-25T11:31:14+01:00",
+							"author": "JakubNovotny-ext43587",
+							"message": "dummy change",
+							"body": ""
+						},
+						{
+							"commitId": "9aec006a",
+							"date": "2024-01-25T09:47:53+01:00",
+							"author": "sfpowerscripts",
+							"message": "Fix: some stuff",
+							"body": ""
+						},
+						{
+							"commitId": "62a6742b",
+							"date": "2024-01-24T16:03:20+01:00",
+							"author": "sfpowerscripts",
+							"message": "feat: changes to apps",
+							"body": ""
+						},
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsFeature1",
+					"to": "26c6c525",
+					"version": "0.5.0.1",
+					"latestCommitId": "9aec006a",
+					"commits": [
+						{
+							"commitId": "9aec006a",
+							"date": "2024-01-25T09:47:53+01:00",
+							"author": "sfpowerscripts",
+							"message": "Fix: some stuff",
+							"body": ""
+						},
+						{
+							"commitId": "62a6742b",
+							"date": "2024-01-24T16:03:20+01:00",
+							"author": "sfpowerscripts",
+							"message": "feat: changes to apps",
+							"body": ""
+						},
+						{
+							"commitId": "846904ba",
+							"date": "2024-01-24T15:40:05+01:00",
+							"author": "sfpowerscripts",
+							"message": "move",
+							"body": ""
+						},
+						{
+							"commitId": "4b17c23a",
+							"date": "2024-01-24T15:40:05+01:00",
+							"author": "packocz",
+							"message": "change",
+							"body": ""
+						},
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsBase",
+					"to": "26c6c525",
+					"version": "0.3.0.1",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsApp",
+					"to": "26c6c525",
+					"version": "0.5.0.1",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				}
+			],
+			"hashId": "64e346a920d7adbc8a295f6bdc2115ca9f94e75a",
+			"date": "Thu Jan 25 2024 10:36:23 GMT+0000 (Coordinated Universal Time)"
+		}
+	]
+}
