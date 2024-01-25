@@ -116,6 +116,65 @@
 			],
 			"hashId": "0e031236641743d1c785c368c9eeed6ded937298",
 			"date": "Wed Jan 24 2024 16:13:10 GMT+0000 (Coordinated Universal Time)"
+		},
+		{
+			"names": ["app-v3.0"],
+			"buildNumber": 3,
+			"workItems": {
+				"": ["9aec006a"]
+			},
+			"artifacts": [
+				{
+					"name": "VersionsFeature2",
+					"from": "9bb72c07",
+					"to": "9aec006a",
+					"version": "0.3.0.1",
+					"latestCommitId": "9aec006a",
+					"commits": [
+						{
+							"commitId": "9aec006a",
+							"date": "2024-01-25T09:47:53+01:00",
+							"author": "sfpowerscripts",
+							"message": "Fix: some stuff",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsFeature1",
+					"from": "9bb72c07",
+					"to": "9aec006a",
+					"version": "0.4.0.1",
+					"latestCommitId": "9aec006a",
+					"commits": [
+						{
+							"commitId": "9aec006a",
+							"date": "2024-01-25T09:47:53+01:00",
+							"author": "sfpowerscripts",
+							"message": "Fix: some stuff",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsBase",
+					"from": "9bb72c07",
+					"to": "9aec006a",
+					"version": "0.2.0.6",
+					"latestCommitId": "a320653d",
+					"commits": []
+				},
+				{
+					"name": "VersionsApp",
+					"from": "9bb72c07",
+					"to": "9aec006a",
+					"version": "0.4.0.1",
+					"latestCommitId": "a320653d",
+					"commits": []
+				}
+			],
+			"hashId": "cdb06499eb6a4c46346c30727c3b6bf752b6d9dc",
+			"date": "Thu Jan 25 2024 08:51:37 GMT+0000 (Coordinated Universal Time)"
 		}
 	]
 }
