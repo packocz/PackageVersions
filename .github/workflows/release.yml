@@ -98,6 +98,22 @@ jobs:
                   LAST_RELEASE_TAG=$(git describe --tags --match="app-v*" --abbrev=0 HEAD)
                   sed -n "/# ${LAST_RELEASE_TAG}/q;p" changes/Release-Changelog.md >> changelog.md
 
+            - name: Generate Change Log
+              run: |
+                  sfp changelog:generate --branchname=changes --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=changes --workitemurl=${WORKITEM_URL} --showallartifacts
+
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Update Change Log
+              run: |
+                  git checkout origin/changes -- changes/Release-Changelog.md
+                  printf "# [\!\!\! CHECK MANUAL STEPS \!\!\!](https://github.com/${GITHUB_REPOSITORY}/tree/${COMMIT_ID}/runbooks)\n" > changelog.md
+                  LAST_RELEASE_TAG=$(git describe --tags --match="app-v*" --abbrev=0 HEAD)
+                  sed -n "/# ${LAST_RELEASE_TAG}/q;p" changes/Release-Changelog.md >> changelog.md
+
             - name: Create Release on GitHub
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
