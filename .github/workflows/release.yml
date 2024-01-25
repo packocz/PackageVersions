@@ -91,7 +91,7 @@ jobs:
 
             - name: Generate Change Log
               run: |
-                  sfp changelog:generate --branchname=changes --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=changes --workitemurl=${WORKITEM_URL} --showallartifacts
+                  sfp changelog:generate --branchname=changes --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=change --workitemurl=${WORKITEM_URL} --showallartifacts
 
             - name: Checkout
               uses: actions/checkout@v3
