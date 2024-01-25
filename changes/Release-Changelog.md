@@ -1,20 +1,20 @@
-<a id=64e346a920d7adbc8a295f6bdc2115ca9f94e75a></a>
+<a id=cd62dbc660fd41d257b19aaf57f5ac8b0ce1a4d5></a>
 
-# app-v4.0
+# app-v6.0
 
 Cumulative Release Number: <b>1</b>
 
-Matching defintion first created or deployed to an org on: Thu Jan 25 2024 10:36:23 GMT+0000 (Coordinated Universal Time)
+Matching defintion first created or deployed to an org on: Thu Jan 25 2024 11:11:14 GMT+0000 (Coordinated Universal Time)
 
 ### Artifacts :package:
 
--   **VersionsFeature2** v0.4.0.1 (26c6c525)
+-   **VersionsFeature2** v0.5.0.3 (f81ab55c)
 
--   **VersionsFeature1** v0.5.0.1 (26c6c525)
+-   **VersionsFeature1** v0.6.0.3 (f81ab55c)
 
--   **VersionsBase** v0.3.0.1 (26c6c525)
+-   **VersionsBase** v0.4.0.3 (f81ab55c)
 
--   **VersionsApp** v0.5.0.1 (26c6c525)
+-   **VersionsApp** v0.6.0.3 (f81ab55c)
 
 ### Work Items :gem:
 
@@ -26,6 +26,8 @@ Matching defintion first created or deployed to an org on: Thu Jan 25 2024 10:36
 
 | Date       | Time     | Commit ID | Commit Message             |
 | ---------- | -------- | --------- | -------------------------- |
+| 25/01/2024 | 11:07:31 | f81ab55c  | Branch name fix            |
+| 25/01/2024 | 10:43:11 | 1ede1ba6  | Changelog debug            |
 | 25/01/2024 | 10:31:14 | 922eb741  | dummy change               |
 | 25/01/2024 | 08:47:53 | 9aec006a  | Fix: some stuff            |
 | 24/01/2024 | 15:03:20 | 62a6742b  | feat: changes to apps      |
