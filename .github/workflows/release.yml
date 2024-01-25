@@ -91,12 +91,12 @@ jobs:
 
             - name: Generate Change Log
               run: |
-                  sfp changelog:generate --branchname=changes --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=release-definitions --workitemurl=${WORKITEM_URL} --showallartifacts >> changelog.md
-
-            - name: Generate Change Log
-              run: |
-                  sed -n "/Generating changelog.../,/Committed File/p" changelog.md > temp.txt && mv temp.txt changelog.md
-                  sed '1d;$d' changelog.md > temp.txt && mv temp.txt changelog.md
+                  sfp changelog:generate --branchname=changes --releasename=${RELEASE_TAG} --workitemfilter=${TICKET_REGEX} --directory=changes --workitemurl=${WORKITEM_URL} --showallartifacts
+                  git fetch
+                  git checkout origin/changes -- changes/Release-Changelog.md
+                  printf "# [\!\!\! CHECK MANUAL STEPS \!\!\!](https://github.com/${GITHUB_REPOSITORY}/tree/${COMMIT_ID}/runbooks)\n" > changelog.md
+                  LAST_RELEASE_TAG=$(git describe --tags --match="app-v*" --abbrev=0 HEAD)
+                  sed -n "/# ${LAST_RELEASE_TAG}/q;p" changes/Release-Changelog.md >> changelog.md
 
             - name: Create Release on GitHub
               env:
