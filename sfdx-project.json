@@ -8,8 +8,8 @@
 			"path": "src/base",
 			"default": false,
 			"package": "VersionsBase",
-			"versionName": "ver 0.2",
-			"versionNumber": "0.2.0.NEXT",
+			"versionName": "ver 0.3",
+			"versionNumber": "0.3.0.NEXT",
 			"branch": "",
 			"versionDescription": "Package Versioning demo, base package. Top level dependency",
 			"definitionFile": "config/project-scratch-def.json"
@@ -18,15 +18,15 @@
 			"path": "src/feature-1",
 			"default": false,
 			"package": "VersionsFeature1",
-			"versionName": "ver 0.4",
-			"versionNumber": "0.4.0.NEXT",
+			"versionName": "ver 0.5",
+			"versionNumber": "0.5.0.NEXT",
 			"branch": "",
 			"versionDescription": "Package Versioning demo, feature package. Depends on Base",
 			"definitionFile": "config/project-scratch-def.json",
 			"dependencies": [
 				{
 					"package": "VersionsBase",
-					"versionNumber": "0.2.0.LATEST"
+					"versionNumber": "0.3.0.LATEST"
 				}
 			]
 		},
@@ -34,15 +34,15 @@
 			"path": "src/feature-2",
 			"default": false,
 			"package": "VersionsFeature2",
-			"versionName": "ver 0.3",
-			"versionNumber": "0.3.0.NEXT",
+			"versionName": "ver 0.4",
+			"versionNumber": "0.4.0.NEXT",
 			"branch": "",
 			"versionDescription": "Package Versioning demo, feature package. Depends on Base",
 			"definitionFile": "config/project-scratch-def.json",
 			"dependencies": [
 				{
 					"package": "VersionsBase",
-					"versionNumber": "0.2.0.LATEST"
+					"versionNumber": "0.3.0.LATEST"
 				}
 			]
 		},
@@ -50,23 +50,23 @@
 			"path": "src/app",
 			"default": false,
 			"package": "VersionsApp",
-			"versionName": "ver 0.4",
-			"versionNumber": "0.4.0.NEXT",
+			"versionName": "ver 0.5",
+			"versionNumber": "0.5.0.NEXT",
 			"branch": "",
 			"versionDescription": "Package Versioning demo, app level (org based) package. Depends on All before it",
 			"definitionFile": "config/project-scratch-def.json",
 			"dependencies": [
 				{
 					"package": "VersionsBase",
-					"versionNumber": "0.2.0.LATEST"
+					"versionNumber": "0.3.0.LATEST"
 				},
 				{
 					"package": "VersionsFeature1",
-					"versionNumber": "0.4.0.LATEST"
+					"versionNumber": "0.5.0.LATEST"
 				},
 				{
 					"package": "VersionsFeature2",
-					"versionNumber": "0.3.0.LATEST"
+					"versionNumber": "0.4.0.LATEST"
 				}
 			]
 		}
