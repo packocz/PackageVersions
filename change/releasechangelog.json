@@ -1,0 +1,146 @@
+{
+	"orgs": [],
+	"releases": [
+		{
+			"names": ["app-v8.0"],
+			"buildNumber": 1,
+			"workItems": {
+				"": ["b41ceccd", "f81ab55c", "1ede1ba6", "922eb741", "9aec006a", "62a6742b", "a320653d", "846904ba", "4b17c23a"]
+			},
+			"artifacts": [
+				{
+					"name": "VersionsFeature2",
+					"to": "b41ceccd",
+					"version": "0.5.0.5",
+					"latestCommitId": "b41ceccd",
+					"commits": [
+						{
+							"commitId": "b41ceccd",
+							"date": "2024-01-25T12:14:58+01:00",
+							"author": "JakubNovotny-ext43587",
+							"message": "Dummy change",
+							"body": ""
+						},
+						{
+							"commitId": "f81ab55c",
+							"date": "2024-01-25T12:07:31+01:00",
+							"author": "JakubNovotny-ext43587",
+							"message": "Branch name fix",
+							"body": ""
+						},
+						{
+							"commitId": "1ede1ba6",
+							"date": "2024-01-25T11:43:11+01:00",
+							"author": "JakubNovotny-ext43587",
+							"message": "Changelog debug",
+							"body": ""
+						},
+						{
+							"commitId": "922eb741",
+							"date": "2024-01-25T11:31:14+01:00",
+							"author": "JakubNovotny-ext43587",
+							"message": "dummy change",
+							"body": ""
+						},
+						{
+							"commitId": "9aec006a",
+							"date": "2024-01-25T09:47:53+01:00",
+							"author": "sfpowerscripts",
+							"message": "Fix: some stuff",
+							"body": ""
+						},
+						{
+							"commitId": "62a6742b",
+							"date": "2024-01-24T16:03:20+01:00",
+							"author": "sfpowerscripts",
+							"message": "feat: changes to apps",
+							"body": ""
+						},
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsFeature1",
+					"to": "b41ceccd",
+					"version": "0.6.0.5",
+					"latestCommitId": "9aec006a",
+					"commits": [
+						{
+							"commitId": "9aec006a",
+							"date": "2024-01-25T09:47:53+01:00",
+							"author": "sfpowerscripts",
+							"message": "Fix: some stuff",
+							"body": ""
+						},
+						{
+							"commitId": "62a6742b",
+							"date": "2024-01-24T16:03:20+01:00",
+							"author": "sfpowerscripts",
+							"message": "feat: changes to apps",
+							"body": ""
+						},
+						{
+							"commitId": "846904ba",
+							"date": "2024-01-24T15:40:05+01:00",
+							"author": "sfpowerscripts",
+							"message": "move",
+							"body": ""
+						},
+						{
+							"commitId": "4b17c23a",
+							"date": "2024-01-24T15:40:05+01:00",
+							"author": "packocz",
+							"message": "change",
+							"body": ""
+						},
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsBase",
+					"to": "b41ceccd",
+					"version": "0.4.0.5",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "VersionsApp",
+					"to": "b41ceccd",
+					"version": "0.6.0.5",
+					"latestCommitId": "a320653d",
+					"commits": [
+						{
+							"commitId": "a320653d",
+							"date": "2023-12-12T15:13:59+01:00",
+							"author": "alesremta-ext43767",
+							"message": "First versions of Packages",
+							"body": ""
+						}
+					]
+				}
+			],
+			"hashId": "675e83a440cb1f1278a64a7d4776f8e0001c5ce7",
+			"date": "Thu Jan 25 2024 11:27:25 GMT+0000 (Coordinated Universal Time)"
+		}
+	]
+}
