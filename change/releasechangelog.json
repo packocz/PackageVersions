@@ -167,6 +167,47 @@
 			],
 			"hashId": "a8bfc10e19dee895841d992743d06d294bf43e57",
 			"date": "Thu Jan 25 2024 11:53:30 GMT+0000 (Coordinated Universal Time)"
+		},
+		{
+			"names": ["app-v10.0"],
+			"buildNumber": 2,
+			"workItems": {},
+			"artifacts": [
+				{
+					"name": "VersionsFeature2",
+					"from": "36eeea93",
+					"to": "36eeea93",
+					"version": "0.5.0.9",
+					"latestCommitId": "36eeea93",
+					"commits": []
+				},
+				{
+					"name": "VersionsFeature1",
+					"from": "36eeea93",
+					"to": "36eeea93",
+					"version": "0.6.0.9",
+					"latestCommitId": "9aec006a",
+					"commits": []
+				},
+				{
+					"name": "VersionsBase",
+					"from": "36eeea93",
+					"to": "36eeea93",
+					"version": "0.4.0.9",
+					"latestCommitId": "a320653d",
+					"commits": []
+				},
+				{
+					"name": "VersionsApp",
+					"from": "36eeea93",
+					"to": "36eeea93",
+					"version": "0.6.0.9",
+					"latestCommitId": "a320653d",
+					"commits": []
+				}
+			],
+			"hashId": "3798dfeec0a6cd31c24fa8255c365220b095958d",
+			"date": "Fri Jan 26 2024 12:17:33 GMT+0000 (Coordinated Universal Time)"
 		}
 	]
 }
